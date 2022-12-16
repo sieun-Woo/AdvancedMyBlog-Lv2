@@ -3,6 +3,7 @@ package com.blog.advancedmyblog.service;
 import com.blog.advancedmyblog.Jwt.JwtUtil;
 import com.blog.advancedmyblog.dto.PostRequestDto;
 import com.blog.advancedmyblog.dto.PostResponseDto;
+import com.blog.advancedmyblog.dto.StatusResponseDto;
 import com.blog.advancedmyblog.entity.Post;
 import com.blog.advancedmyblog.entity.User;
 import com.blog.advancedmyblog.repository.PostRepository;
@@ -63,12 +64,13 @@ public class PostService {
         return PostResponseDtoList;
     }
 
-    // 게시글 조회하기
+    // 게시글 선택하여 조회하기
     @Transactional(readOnly = true)
     public PostResponseDto getPostById(Long id) {
         return new PostResponseDto(postRepository.findPostById(id));
     }
 
+    // 선택한 게시글 수정하기
     @Transactional
     public PostResponseDto updatePost(Long id, PostRequestDto postRequestDto, HttpServletRequest request) {
         // Request에서 Token 가져오기
@@ -101,12 +103,13 @@ public class PostService {
         }
     }
 
-    public String deletePost(Long id, HttpServletRequest request) {
+    // 선택한 게시글 삭제하기
+    public StatusResponseDto deletePost(Long id, HttpServletRequest request) {
         // Request에서 Token 가져오기
         String token = jwtUtil.resolveToken(request);
         Claims claims;
 
-        // 토큰이 있는 경우에만 게시글 수정 가능
+        // 토큰이 있는 경우에만 게시글 삭제 가능
         if (token != null) {
             if (jwtUtil.validateToken(token)) {
                 // 토큰에서 사용자 정보 가져오기
@@ -126,7 +129,7 @@ public class PostService {
                 throw new IllegalArgumentException("작성자가 일치하지 않습니다.");
             }
             postRepository.delete(post);
-            return "게시글이 삭제되었습니다.";
+            return new StatusResponseDto("200","게시글이 삭제되었습니다.");
         } else {
             return null;
         }

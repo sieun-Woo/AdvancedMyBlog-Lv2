@@ -1,9 +1,8 @@
 package com.blog.advancedmyblog.dto;
 
 import com.blog.advancedmyblog.entity.Post;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
+import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDateTime;
 
@@ -17,8 +16,6 @@ public class PostResponseDto {
     private LocalDateTime modifiedAt;
     private String contents;
 
-
-
     public PostResponseDto(Post post) {
         this.id = post.getId();
         this.createdAt = post.getCreatedAt();
@@ -27,4 +24,5 @@ public class PostResponseDto {
         this.title  = post.getTitle();
         this.contents = post.getContents();
     }
+
 }

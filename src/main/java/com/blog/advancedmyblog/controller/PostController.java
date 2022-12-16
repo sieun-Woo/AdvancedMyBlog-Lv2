@@ -2,9 +2,12 @@ package com.blog.advancedmyblog.controller;
 
 import com.blog.advancedmyblog.dto.PostRequestDto;
 import com.blog.advancedmyblog.dto.PostResponseDto;
+import com.blog.advancedmyblog.dto.StatusResponseDto;
 import com.blog.advancedmyblog.service.PostService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -39,7 +42,7 @@ public class PostController {
 
     //게시글 삭제
     @DeleteMapping("/post/{id}")
-    public String deletePost(@PathVariable Long id, HttpServletRequest request) {
+    public StatusResponseDto deletePost(@PathVariable Long id, HttpServletRequest request) {
         return postService.deletePost(id, request);
     }
 }
