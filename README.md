@@ -2,6 +2,9 @@
 
 API 명세서 https://documenter.getpostman.com/view/24826285/2s8YzXufTP
 
+# ERD
+
+![Blog](https://user-images.githubusercontent.com/116184724/208607915-a2ebe854-a20f-47c1-b7ee-0127d6355f7d.png)
 1. 처음 설계한 API 명세서에 변경사항이 있었나요?
     처음 설계와 비교하여 큰 변화는 없었다.
     
