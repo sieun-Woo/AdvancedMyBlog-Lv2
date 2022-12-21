@@ -6,16 +6,17 @@
 
 | 기능 | API URL | Method | Request  Header | Request | Response | Response header |
 | --- | --- | --- | --- | --- | --- | --- |
-| 회원가입 | /api/user/signup | Post |   | {       "username" : "dntldms12",       "password" : "tldms6352"   } |   | {     "statusCode": "200",     "msg": "회원가입 성공"   } |
-| 로그인 | /api/user/login | Post |   |   |   |   |
-| 전체 게시글 목록조회 | /api/posts | Get |   |   |   |   |
-| 선택 게시글 조회 | /api/post/{id} | Get |   |   |   |   |
-| 게시글 작성 | /api/post | Post |   |   |   |   |
-| 게시글 수정 | /api/post/{id} | Post |   |   |   |   |
-| 게시글 삭제 | /api/post/{id} | Delete |   |   |   |   |
+| 회원가입 | /api/user/signup | Post |   | {       "username" : "dntldms12",       "password" : "tldms6352"   } | {     "statusCode": "200",     "msg": "회원가입 성공"   } |   |
+| 로그인 | /api/user/login | Post |   | {       "username" : "dntldms12",       "password" : "tldms6352"   } |   | Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkbnRsZG1zMTIiLCJleHAiOjE2NzExNzE4NDYsImlhdCI6MTY3MTE2ODI0Nn0.3Lmlw89uwcPAhK2xRZuGSHOhwHk\_wWGcA9ORFdIZjVc   Content-Type: application/json |
+| 전체 게시글 목록조회 | /api/posts | Get |   |   | \[     {       "id": 2,       "title": "title2",       "username": "dntldms12",       "createdAt": "2022-12-16T14:35:16.778038",       "modifiedAt": "2022-12-16T14:35:16.778038",       "contents": "contents2"     },     {       "id": 1,       "title": "title",       "username": "dntldms12",       "createdAt": "2022-12-16T14:32:23.520497",       "modifiedAt": "2022-12-16T14:32:23.520497",       "contents": "contents"     }   \] |   |
+| 선택 게시글 조회 | /api/post/{id} | Get |   |   | {     "id": 1,     "title": "title",     "username": "dntldms12",     "createdAt": "2022-12-16T14:32:23.520497",     "modifiedAt": "2022-12-16T14:32:23.520497",     "contents": "contents"   } |   |
+| 게시글 작성 | /api/post | Post | Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkbnRsZG1zMTIiLCJleHAiOjE2NzExNzE4NDYsImlhdCI6MTY3MTE2ODI0Nn0.3Lmlw89uwcPAhK2xRZuGSHOhwHk\_wWGcA9ORFdIZjVc   Content-Type: application/json | {       "title" : "title",       "contents" : "contents"   } | {     "id": 1,     "title": "title",     "username": "dntldms12",     "createdAt": "2022-12-16T14:32:23.5204973",     "modifiedAt": "2022-12-16T14:32:23.5204973",     "contents": "contents"   } |   |
+| 게시글 수정 | /api/post/{id} | Post | Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkbnRsZG1zMTIiLCJleHAiOjE2NzExNzE4NDYsImlhdCI6MTY3MTE2ODI0Nn0.3Lmlw89uwcPAhK2xRZuGSHOhwHk\_wWGcA9ORFdIZjVc   Content-Type: application/json | {       "title" : "changedtitle",       "contents" : "changedcontents"   } | {     "id": 1,     "title": "changedtitle",     "username": "dntldms12",     "createdAt": "2022-12-16T14:32:23.520497",     "modifiedAt": "2022-12-16T14:32:23.520497",     "contents": "changedcontents"   } |   |
+| 게시글 삭제 | /api/post/{id} | Delete | Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkbnRsZG1zMTIiLCJleHAiOjE2NzExNzE4NDYsImlhdCI6MTY3MTE2ODI0Nn0.3Lmlw89uwcPAhK2xRZuGSHOhwHk\_wWGcA9ORFdIZjVc   Content-Type: application/json |   | {     "statusCode": "200",     "msg": "게시글이 삭제되었습니다."   } |   |
 |   |   |   |   |   |   |   |
 |   |   |   |   |   |   |   |
 |   |   |   |   |   |   |   |
+
 # 배운점
 
 1. 처음 설계한 API 명세서에 변경사항이 있었나요?
