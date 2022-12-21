@@ -2,8 +2,8 @@
 
 |Method|URL|Description|Request|Resquest Header|Response|Response Header|
 |-|-|-|-|-|-|-|
-|POST|/api/user/signup|회원가입|{"username": "username", "password" : "password"}|-|{"statusCode": "200","msg": "회원가입 성공"}|-|
-|POST|/api/user/login|로그인|{"username": "username", "password" : "password"}|-|{"statusCode": "200","msg": "로그인 성공"}|Authorization: Bearer|-| 
+|POST|/api/user/signup|회원가입|{"username": "username", "password" : "password"}||{"statusCode": "200","msg": "회원가입 성공"}|
+|POST|/api/user/login|로그인|{"username": "username", "password" : "password"}||{"statusCode": "200","msg": "로그인 성공"}|Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkbnRsZG1zMTIiLCJleHAiOjE2NzExNzE4NDYsImlhdCI6MTY3MTE2ODI0Nn0.3Lmlw89uwcPAhK2xRZuGSHOhwHk_wWGcA9ORFdIZjVc| 
 
 # ERD
 
