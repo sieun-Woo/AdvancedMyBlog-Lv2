@@ -6,7 +6,13 @@
 
 | 기능 | API URL | Method | Request  Header | Request | Response | Response header |
 | --- | --- | --- | --- | --- | --- | --- |
-|   |   |   |   |   |   |   |
+| 회원가입 | /api/user/signup | Post |   |   |   |   |
+| 로그인 | /api/user/login | Post |   |   |   |   |
+| 전체 게시글 목록조회 | /api/posts | Get |   |   |   |   |
+| 선택 게시글 조회 | /api/post/{id} | Get |   |   |   |   |
+| 게시글 작성 | /api/post | Post |   |   |   |   |
+| 게시글 수정 | /api/post/{id} | Post |   |   |   |   |
+| 게시글 삭제 | /api/post/{id} | Delete |   |   |   |   |
 |   |   |   |   |   |   |   |
 |   |   |   |   |   |   |   |
 |   |   |   |   |   |   |   |
