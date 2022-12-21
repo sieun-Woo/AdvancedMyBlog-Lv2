@@ -1,5 +1,4 @@
-# AdvancedMyBlog-Lv2
-
+# API 명세서
 
 # ERD
 
