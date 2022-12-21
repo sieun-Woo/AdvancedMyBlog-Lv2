@@ -1,7 +1,7 @@
 # API 명세서
 
 |Method|URL|Description|Request|Resquest Header|Response|Response Header|
-|-|-|-|-|-|-|
+|-|-|-|-|-|-|-|
 |POST|/api/user/signup|회원가입|{"username": "username", "password" : "password"}|-|{"statusCode": "200","msg": "회원가입 성공"}|-|
 |POST|/api/user/login|로그인|{"username": "username", "password" : "password"}|-|{"statusCode": "200","msg": "로그인 성공"}|Authorization: Bearer|-| 
 
