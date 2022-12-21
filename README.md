@@ -1,9 +1,9 @@
 # API 명세서
 
-|Method|URL|Description|Request|Response|Response Header|
+|Method|URL|Description|Request|Resquest Header|Response|Response Header|
 |-|-|-|-|-|-|
-|POST|/api/user/signup|회원가입|{"username": "username", "password" : "password"}|{"statusCode": "200","msg": "회원가입 성공"}|
-|POST|/api/user/login|로그인|{"username": "username", "password" : "password"}|{"statusCode": "200","msg": "로그인 성공"}|Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkbnRsZG1zMTIiLCJleHAiOjE2NzExNzE4NDYsImlhdCI6MTY3MTE2ODI0Nn0.3Lmlw89uwcPAhK2xRZuGSHOhwHk_wWGcA9ORFdIZjVc|
+|POST|/api/user/signup|회원가입|{"username": "username", "password" : "password"}|-|{"statusCode": "200","msg": "회원가입 성공"}|
+|POST|/api/user/login|로그인|{"username": "username", "password" : "password"}|-|{"statusCode": "200","msg": "로그인 성공"}|Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJkbnRsZG1zMTIiLCJleHAiOjE2NzExNzE4NDYsImlhdCI6MTY3MTE2ODI0Nn0.3Lmlw89uwcPAhK2xRZuGSHOhwHk_wWGcA9ORFdIZjVc|
 |GET|/api/posts|전체 게시글 목록 조회|-|[{"createdAt": "2022-12-09T10:40:29.705468","modifiedAt": "2022-12-09T10:40:29.705468","id": 1,"username": "username","title": "title","contents": "contents"}]|
 |GET|/api/post/{id}|선택한 게시글 조회|-|{"createdAt": "2022-12-09T10:40:29.705468","modifiedAt": "2022-12-09T10:40:29.705468","id": 1,"username": "username","title": "title","contents": "contents"}|
 |POST|/api/post|선택한 게시글 작성|{"username": "username","title" : "title","password" : "password","contents": "contents"}|{"createdAt": "2022-12-09T10:40:29.7054683","modifiedAt": "2022-12-09T10:40:29.7054683","id": 1,"username": "username","title": "title","contents": "contents"}|
