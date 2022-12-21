@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity(name = "Post")
 @Getter
 @RequiredArgsConstructor
@@ -21,6 +24,9 @@ public class Post extends Timestamped {
 
     @Column(nullable = false)
     private String contents;
+
+    @OneToMany
+    private List<Comment> Comments = new ArrayList<Comment>();
 
     public Post(PostRequestDto requestDto, String username) {
         this.username = username;

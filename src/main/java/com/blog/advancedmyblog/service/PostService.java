@@ -6,6 +6,8 @@ import com.blog.advancedmyblog.dto.PostResponseDto;
 import com.blog.advancedmyblog.dto.StatusResponseDto;
 import com.blog.advancedmyblog.entity.Post;
 import com.blog.advancedmyblog.entity.User;
+import com.blog.advancedmyblog.entity.UserRoleEnum;
+import com.blog.advancedmyblog.repository.CommentRepository;
 import com.blog.advancedmyblog.repository.PostRepository;
 import com.blog.advancedmyblog.repository.UserRepository;
 import io.jsonwebtoken.Claims;
@@ -20,6 +22,7 @@ import java.util.ArrayList;
 @RequiredArgsConstructor
 public class PostService {
     private final PostRepository postRepository;
+    private final CommentRepository commentrepository;
     private final UserRepository userRepository;
     private final JwtUtil jwtUtil;
 
@@ -58,7 +61,7 @@ public class PostService {
     public ArrayList<PostResponseDto> getPost() {
         ArrayList<PostResponseDto> PostResponseDtoList = new ArrayList<>();
         for (Post post : postRepository.findAllByOrderByModifiedAtDesc()) {
-            PostResponseDto postResponseDto = new PostResponseDto(post);
+            PostResponseDto postResponseDto = new PostResponseDto(post, commentrepository.findCommentByPost(post));
             PostResponseDtoList.add(postResponseDto);
         }
         return PostResponseDtoList;
@@ -91,16 +94,22 @@ public class PostService {
                     () -> new IllegalArgumentException("사용자가 존재하지 않습니다.")
             );
 
-            // 토큰의 사용자 정보와 게시글의 작성자를 비교
+            UserRoleEnum userRoleEnum = user.getRole();
             Post post = postRepository.findPostById(id);
-            if(!(post.getUsername().equals(user.getUsername()))) {
-                throw new IllegalArgumentException("작성자가 일치하지 않습니다.");
-            }
-            post.update(postRequestDto);
-            return new PostResponseDto(post);
-        } else {
+            if (userRoleEnum == UserRoleEnum.USER) {
+                // 토큰의 사용자 정보와 게시글의 작성자를 비교
+                if (!(post.getUsername().equals(user.getUsername()))) {
+                    throw new IllegalArgumentException("작성자가 일치하지 않습니다.");
+                }
+                post.update(postRequestDto);
+                return new PostResponseDto(post);
+            } else if (userRoleEnum == UserRoleEnum.ADMIN) {
+                post.update(postRequestDto);
+                return new PostResponseDto(post);
+            } else
+                return null;
+        } else
             return null;
-        }
     }
 
     // 선택한 게시글 삭제하기
@@ -125,11 +134,18 @@ public class PostService {
 
             // 토큰의 사용자 정보와 게시글의 작성자를 비교
             Post post = postRepository.findPostById(id);
-            if(!(post.getUsername().equals(user.getUsername()))) {
-                throw new IllegalArgumentException("작성자가 일치하지 않습니다.");
-            }
-            postRepository.delete(post);
-            return new StatusResponseDto("200","게시글이 삭제되었습니다.");
+            UserRoleEnum userRoleEnum = user.getRole();
+            if(userRoleEnum == UserRoleEnum.USER) {
+                if (!(post.getUsername().equals(user.getUsername()))) {
+                    throw new IllegalArgumentException("작성자가 일치하지 않습니다.");
+                }
+                postRepository.delete(post);
+                return new StatusResponseDto("200", "게시글이 삭제되었습니다.");
+            } else if (userRoleEnum == UserRoleEnum.ADMIN) {
+                postRepository.delete(post);
+                return new StatusResponseDto("200", "관리자 권한으로 게시글이 삭제되었습니다.");
+            } else
+                return null;
         } else {
             return null;
         }

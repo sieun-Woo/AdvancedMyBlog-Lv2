@@ -5,6 +5,7 @@ import com.blog.advancedmyblog.dto.LoginRequestDto;
 import com.blog.advancedmyblog.dto.StatusResponseDto;
 import com.blog.advancedmyblog.dto.SignupRequestDto;
 import com.blog.advancedmyblog.entity.User;
+import com.blog.advancedmyblog.entity.UserRoleEnum;
 import com.blog.advancedmyblog.repository.UserRepository;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +32,17 @@ public class UserService {
             throw new IllegalArgumentException("중복된 사용자가 존재합니다.");
         }
 
-        User user = new User(username, password);
+        // 사용자 ROLE 확인
+        UserRoleEnum role = UserRoleEnum.USER;
+
+        if (signupRequestDto.isAdmin()) {
+            role = UserRoleEnum.ADMIN;
+            User user = new User(username, password, role);
+            userRepository.save(user);
+            return new StatusResponseDto("200", "관리자로 회원가입 성공");
+        }
+
+        User user = new User(username, password, role);
         userRepository.save(user);
         return new StatusResponseDto("200", "회원가입 성공");
     }
