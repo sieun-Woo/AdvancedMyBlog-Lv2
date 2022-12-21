@@ -2,6 +2,15 @@
 
 ![Blog (5)](https://user-images.githubusercontent.com/116184724/208817386-d1af4554-2f8f-4a9a-9d93-128a66ada329.png)
 
+# API 명세서
+
+| 기능 | API URL | Method | Request  Header | Request | Response | Response header |
+| --- | --- | --- | --- | --- | --- | --- |
+|   |   |   |   |   |   |   |
+|   |   |   |   |   |   |   |
+|   |   |   |   |   |   |   |
+|   |   |   |   |   |   |   |
+
 # 배운점
 
 1. 처음 설계한 API 명세서에 변경사항이 있었나요?
